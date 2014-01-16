@@ -18,13 +18,13 @@ class BinarySearchTree
     end
     all_data += [node.data]
     if node.right
-      all_data += all(node.left)
+      all_data += all(node.right)
     end
     all_data
   end
 
   def each(&block)
-    all(root_node)
+    yield(all(root_node))
   end
 
   def insert(data)
