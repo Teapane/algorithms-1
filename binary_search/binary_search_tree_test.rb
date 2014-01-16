@@ -43,7 +43,6 @@ class BstTest < MiniTest::Unit::TestCase
     assert_equal 4, four.data
     assert_equal 2, four.left.data
     assert_equal 1, four.left.left.data
-    binding.pry
     assert_equal 3, four.left.right.data
     assert_equal 6, four.right.data
     assert_equal 5, four.right.left.data
