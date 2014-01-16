@@ -1,4 +1,4 @@
-class Bst
+class BinarySearchTree
 
   attr_reader :root_node
 
@@ -8,6 +8,10 @@ class Bst
 
   def data
     root_node.data
+  end
+
+  def each
+    yield data
   end
 
   def insert(data)
