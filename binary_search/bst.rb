@@ -14,16 +14,31 @@ class Bst
     if data <= root_node.data
       add_left(root_node, data)
     else
-      root_node.right = Node.new(data)
+      add_right(root_node, data)
     end
   end
 
   def add_left(node, data)
-    if node.left.nil?
-      node.left = Node.new(data)
+    if data <= node.data
+      if node.left.nil?
+        node.left = Node.new(data)
+      else
+        add_left(node.left, data)
+      end
     else
-      add_left(node.left, data)
-      # node.insert(data)
+      add_right(node, data)
+    end
+  end
+
+  def add_right(node, data)
+    if data > node.data
+      if node.right.nil?
+        node.right = Node.new(data)
+      else
+        add_right(node.right, data)
+      end
+    else
+      add_left(node, data)
     end
   end
 
