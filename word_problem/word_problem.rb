@@ -19,7 +19,6 @@ class WordProblem
     pemdas && ((phrase.include?('multiplied')) || (phrase.include?('divided')))
   end
 
-
   private
 
   def pemdas_calculator
