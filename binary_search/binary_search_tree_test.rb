@@ -62,7 +62,7 @@ class BinarySearchTreeTest < MiniTest::Unit::TestCase
   end
 
   def test_iterating_over_smaller_element
-    skip
+    # skip
     four = BinarySearchTree.new 4
     four.insert 2
     assert_equal [2, 4], record_all_data(four)

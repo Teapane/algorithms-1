@@ -1,3 +1,4 @@
+require 'pry'
 class BinarySearchTree
 
   attr_reader :root_node
@@ -10,8 +11,20 @@ class BinarySearchTree
     root_node.data
   end
 
-  def each
-    yield data
+  def all(node)
+    all_data = []
+    if node.left
+      all_data += all(node.left)
+    end
+    all_data += [node.data]
+    if node.right
+      all_data += all(node.left)
+    end
+    all_data
+  end
+
+  def each(&block)
+    all(root_node)
   end
 
   def insert(data)
