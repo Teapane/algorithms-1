@@ -78,4 +78,22 @@ class LinkedList
     node.link = current
     node
   end
+
+  def insert_after(index, data)
+    if (index+1) > self.count
+      return
+    end
+    node = Node.new(data)
+    counter = 0
+    previous = nil
+    current = head
+    while counter < index
+      previous = current
+      current = current.link
+      counter += 1
+    end
+    previous.link = node
+    node.link = current
+    node
+  end
 end
