@@ -45,4 +45,14 @@ class LinkedList
     previous.link = nil
     current.data
   end
+
+  def shift(data)
+    node = Node.new(data)
+    if head.nil?
+      @head = node
+      return
+    end
+    node.link = head
+    @head = node
+  end
 end

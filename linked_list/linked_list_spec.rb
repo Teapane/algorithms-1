@@ -36,4 +36,14 @@ describe LinkedList do
     expect(list.pop).to eq('hello')
     expect(list.count).to eq(1)
   end
+
+  it "can shift the list with a new element" do
+    list = LinkedList.new
+    list.push("howdy")
+    list.push("hello")
+    expect(list.count).to eq(2)
+    list.shift("heyo")
+    expect(list.count).to eq(3)
+    expect(list.head.data).to eq('heyo')
+  end
 end
