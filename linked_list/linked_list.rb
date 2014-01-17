@@ -4,9 +4,8 @@ class LinkedList
   attr_reader :head
 
   def count
-    if head.nil?
-      return 0
-    end
+    return 0 if head.nil?
+
     node_count = 1
     current = head
     while current.link
@@ -32,9 +31,7 @@ class LinkedList
   end
 
   def pop
-    if head.nil?
-      return
-    end
+    return if head.nil?
     current = head
     previous = nil
     while current.link
@@ -62,5 +59,23 @@ class LinkedList
     first = head
     @head = first.link
     first.data
+  end
+
+  def insert_before(index, data)
+    if (index+1) > self.count
+      return
+    end
+    node = Node.new(data)
+    counter = 1
+    previous = nil
+    current = head
+    while counter < index
+      previous = current
+      current = current.link
+      counter += 1
+    end
+    previous.link = node
+    node.link = current
+    node
   end
 end
