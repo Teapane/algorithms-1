@@ -96,4 +96,5 @@ class LinkedList
     node.link = current
     node
   end
+
 end
