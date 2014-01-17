@@ -24,7 +24,9 @@ class BinarySearchTree
   end
 
   def each(&block)
-    yield(all(root_node))
+    all(root_node).each do |node|
+      yield node
+    end
   end
 
   def insert(data)
