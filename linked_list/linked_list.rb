@@ -18,7 +18,7 @@ class LinkedList
   end
 
   def push(data)
-    node = Node.new
+    node = Node.new(data)
     if head.nil?
       @head = node
       return head
@@ -32,4 +32,17 @@ class LinkedList
     current.link = node
   end
 
+  def pop
+    if head.nil?
+      return
+    end
+    current = head
+    previous = nil
+    while current.link
+      previous = current
+      current = current.link
+    end
+    previous.link = nil
+    current.data
+  end
 end
