@@ -1,11 +1,19 @@
+require './node'
+
 class LinkedList
 
+  attr_reader :head
+
   def count
-    @data ? 1 : 0
+    if head.nil?
+      0
+    else
+      1
+    end
   end
 
   def push(data)
-    @data = data
+    @head = Node.new
   end
 
 end
