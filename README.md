@@ -1,4 +1,9 @@
 algorithms
 ==========
 
-**Binary Search Tree
+##Binary Search Tree
+
+##Linked Lists
+
+##Word Problem
+
