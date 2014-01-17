@@ -46,4 +46,15 @@ describe LinkedList do
     expect(list.count).to eq(3)
     expect(list.head.data).to eq('heyo')
   end
+
+  it "can unshift the list with a new element" do
+    list = LinkedList.new
+    list.push("howdy")
+    list.push("hello")
+    list.shift("heyo")
+    expect(list.count).to eq(3)
+    expect(list.unshift).to eq('heyo')
+    expect(list.count).to eq(2)
+    expect(list.head.data).to eq('howdy')
+  end
 end

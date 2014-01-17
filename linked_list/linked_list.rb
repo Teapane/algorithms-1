@@ -1,5 +1,4 @@
 require './node'
-
 class LinkedList
 
   attr_reader :head
@@ -54,5 +53,14 @@ class LinkedList
     end
     node.link = head
     @head = node
+  end
+
+  def unshift
+    if head.nil?
+      return
+    end
+    first = head
+    @head = first.link
+    first.data
   end
 end
