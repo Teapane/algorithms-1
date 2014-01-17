@@ -16,4 +16,12 @@ describe LinkedList do
     list.push('howdy')
     expect(list.count).to eq(1)
   end
+
+  it "adding multiple elements increases count" do
+    list = LinkedList.new
+    list.push("howdy")
+    list.push("hello")
+    list.push("hey")
+    expect(list.count).to be(3)
+  end
 end
