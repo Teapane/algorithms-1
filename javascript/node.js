@@ -1,7 +1,7 @@
 var Node = function(data) {
 
   'use strict'
-  this.data = 'sadf';
+  this.data = data;
 };
 
 module.exports = Node;

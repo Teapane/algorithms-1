@@ -1,27 +1,27 @@
 var Node = require('./node');
 
-var LinkedList = function() {
+var LinkedList = {
 
-  'use strict'
+  head : null,
 
-  var head = null;
-
-  this.count = function() {
-    if(head === null) {
-      return 0;
-    } else {
+  count : function() {
+    if(this.head) {
       return 1;
-    };
-
-  }();
-
-  this.push = function(data) {
-    if(head === null) {
-      head = new Node(data);
     } else {
-
+      return 0;
     };
-  };
+
+  }(),
+
+  push : function(data) {
+    if(this.head) {
+      console.log('NOT SETTING')
+    } else {
+      this.head = new Node(data);
+      console.log('SETTING' + this.head.data)
+    };
+  }
+  
 };
 
 module.exports = LinkedList;  
