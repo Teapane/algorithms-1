@@ -8,10 +8,10 @@ class WordProblem
     @numbers = select_numbers(content)
     @operators = select_operators
     @pemdas = precedence
+    valid_phrase_elements?
   end
 
   def answer
-    valid_phrase_elements?
     pemdas? ? pemdas_calculator : literal_calculator(numbers)
   end
 
@@ -51,7 +51,8 @@ class WordProblem
 
   def compact_phrase_elements
     index = operand_indices.first
-    subtotal = phrase_elements[index - 1].to_i.send(operand(phrase_elements[index]), phrase_elements[index+1].to_i)
+    operand = operand(phrase_elements[index])
+    subtotal = phrase_elements[index - 1].to_i.send(operand, phrase_elements[index+1].to_i)
     phrase_elements[(index - 1)...(index + 2)] = subtotal.to_s
   end
 
@@ -71,7 +72,7 @@ class WordProblem
   end
 
   def valid_phrase_elements?
-    unless @phrase_elements.any? {|p| conversion.keys.include? p}
+    unless phrase_elements.any? {|p| conversion.keys.include? p}
       raise ArgumentError
     end
   end
@@ -98,7 +99,7 @@ class WordProblem
   end
 
   def select_operators
-    (phrase_elements - numbers)
+    phrase_elements - numbers
   end
 
   def split(content)
