@@ -15,11 +15,19 @@ class WordProblem
     pemdas? ? pemdas_calculator : literal_calculator(numbers)
   end
 
+  private
+
   def pemdas?
-    pemdas && ((phrase_elements.include?('multiplied')) || (phrase_elements.include?('divided')))
+    pemdas && (multiplied? || divided?)
   end
 
-  private
+  def multiplied?
+    phrase_elements.include?('multiplied')
+  end
+
+  def divided?
+    phrase_elements.include?('divided')
+  end
 
   def pemdas_calculator
     compact_phrase_elements if operand_indices.length != 0
@@ -43,18 +51,16 @@ class WordProblem
 
   def compact_phrase_elements
     index = operand_indices.first
-    subtotal = phrase_elements[index - 1].to_i.send(conversion[phrase_elements[index]], phrase_elements[index+1].to_i)
+    subtotal = phrase_elements[index - 1].to_i.send(operand(phrase_elements[index]), phrase_elements[index+1].to_i)
     phrase_elements[(index - 1)...(index + 2)] = subtotal.to_s
   end
 
   def operand_indices
-    indices = []
-    phrase_elements.each_with_index do |value, index|
+    phrase_elements.each_with_object([]) do |value, indices|
       if value == 'divided' || value == 'multiplied'
-        indices << index
+        indices << phrase_elements.index(value)
       end
     end
-    indices
   end
 
   def literal_calculator(values)
@@ -71,11 +77,11 @@ class WordProblem
   end
 
   def subtotal(n)
-    numbers[n].to_i.send(operand(n), numbers[n+1].to_i)
+    numbers[n].to_i.send(operand(operators[n]), numbers[n+1].to_i)
   end
 
   def operand(n)
-    conversion[operators[n]]
+    conversion[n]
   end
 
   def conversion
