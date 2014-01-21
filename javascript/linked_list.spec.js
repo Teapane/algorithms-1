@@ -68,15 +68,26 @@ describe('linkedList', function() {
 
   it('can add an element after an index', function() {
     var linkedList = new LinkedList();
-    expect(linkedList.insertAfter(2, 'hello')).toBeUndefined();
+    expect(linkedList.addAfter(2, 'hello')).toBeUndefined();
     var node1 = linkedList.push('howdy')
     var node2 = linkedList.push('hello')
     var node3 = linkedList.push('howdy')
     var node4 = linkedList.push('good day')
-    var node5 = linkedList.insertAfter(2, 'good evening');
+    var node5 = linkedList.addAfter(2, 'good evening');
     expect(linkedList.count()).toEqual(5);
     expect(node3.link).toEqual(node5)
     expect(node5.link).toEqual(node4)
   });
 
+  it('can add an element before an index', function() {
+    var linkedList = new LinkedList();
+    expect(linkedList.addBefore(2, 'hello')).toBeUndefined();
+    var node1 = linkedList.push('howdy')
+    var node2 = linkedList.push('hello')
+    var node3 = linkedList.push('howdy')
+    var node5 = linkedList.addBefore(2, 'good evening');
+    expect(linkedList.count()).toEqual(4);
+    expect(node2.link).toEqual(node5)
+    expect(node5.link).toEqual(node3)
+  });
 });

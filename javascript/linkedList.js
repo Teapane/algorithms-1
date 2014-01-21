@@ -77,13 +77,32 @@ LinkedList.prototype.unshift = function() {
   };
 }
 
-LinkedList.prototype.insertAfter = function(position, data) {
+LinkedList.prototype.addAfter = function(position, data) {
   if(position < this.count()) {
     var node = new Node(data)
     var previous = undefined;
     var nodeCount = 0;
     var current = this.head;
     while (nodeCount <= position) {
+      previous = current;
+      current = current.link;
+      nodeCount++;
+    }
+    previous.link = node;
+    node.link = current;
+    return node;
+  } else {
+    return undefined;
+  };
+}
+
+LinkedList.prototype.addBefore = function(position, data) {
+  if(position < this.count()) {
+    var node = new Node(data)
+    var previous = undefined;
+    var nodeCount = 0;
+    var current = this.head;
+    while (nodeCount < position) {
       previous = current;
       current = current.link;
       nodeCount++;
