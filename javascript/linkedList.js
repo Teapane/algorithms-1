@@ -1,27 +1,32 @@
 var Node = require('./node');
 
-var LinkedList = {
+var LinkedList = function() {
 
-  head : null,
+  this.head = undefined
 
-  count : function() {
-    if(this.head) {
-      return 1;
-    } else {
-      return 0;
-    };
+}
 
-  }(),
+LinkedList.prototype.count = function() {
+  if(this.head !== undefined) {
+    console.log(this.head)
 
-  push : function(data) {
-    if(this.head) {
-      console.log('NOT SETTING')
-    } else {
-      this.head = new Node(data);
-      console.log('SETTING' + this.head.data)
-    };
-  }
-  
-};
+    return 1;
+  } else {
+    console.log(this.head)
+    return 0;
+  };
+
+}
+
+LinkedList.prototype.push = function(data) {
+  if(this.head) {
+    // console.log('NOT SETTING')
+  } else {
+    this.head = new Node(data);
+    // console.log('SETTING - ' + this.head.data)
+    return this.head;
+  };
+}
+
 
 module.exports = LinkedList;  
