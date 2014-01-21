@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require_relative 'word_problem'
 
-class WordProblemTest < Minitest::Test
+class WordProblemTest < Minitest::Unit::TestCase
   def test_add_1
     # skip
     assert_equal 2, WordProblem.new('What is 1 plus 1?').answer
@@ -120,7 +120,12 @@ class WordProblemTest < Minitest::Test
   def test_can_set_order_of_operations_with_division
     # skip
     assert_equal -4, WordProblem.new('What is 1 plus 10 divided by -2?', true).answer
-    assert_equal 6, WordProblem.new('What is 1 plus 10 divided by 2?', true).answer
+    assert_equal 24, WordProblem.new('What is 1 plus 10 divided by 2 plus 10 plus 8?', true).answer
+  end
+
+  def test_can_handle_order_of_operations_for_mixed_operands
+    assert_equal 22, WordProblem.new('What is 20 plus 5 divided by 5 multiplied by 2?', true).answer
+
   end
 
 end

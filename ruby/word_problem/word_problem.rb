@@ -26,18 +26,32 @@ class WordProblem
     if operators.all? {|o| o == 'divided' || o == 'multiplied'}
       literal_calculator(numbers)
     else
-      if operand_indices.length != 0
-        operand_indices.collect do |index|
-          subtotal = phrase_elements[index - 1].to_i.send(conversion[phrase_elements[index]], phrase_elements[index+1].to_i)
-          phrase_elements[(index - 1)...(index + 2)] = subtotal.to_s
-        end
-      end
-      @numbers = phrase_elements.join(' ').scan(/-?\d*/).delete_if(&:empty?)
-      @operators = phrase_elements - @numbers
+      compact_phrase_elements if operand_indices.length != 0
+      set_numbers
+      set_operators
       @numbers = @numbers.collect {|n| n.to_i}
-      literal_calculator(numbers)
+      if operators.any? {|o| o == 'divided' || o == 'multiplied'}
+        pemdas_calculator
+      else
+        literal_calculator(numbers)
+      end
     end
+  end
 
+  def set_numbers
+    @numbers = phrase_elements.join(' ').scan(/-?\d*/).delete_if(&:empty?)
+  end
+
+  def set_operators
+    @operators = phrase_elements - @numbers
+  end
+
+  def compact_phrase_elements
+    index = operand_indices.first
+    # operand_indices.collect do |index|
+      subtotal = phrase_elements[index - 1].to_i.send(conversion[phrase_elements[index]], phrase_elements[index+1].to_i)
+      phrase_elements[(index - 1)...(index + 2)] = subtotal.to_s
+    # end
   end
 
   def operand_indices
