@@ -2,17 +2,24 @@ var Node = require('./node');
 
 var LinkedList = function() {
 
-  this.head = undefined
+  this.head = undefined;
 
 }
 
 LinkedList.prototype.count = function() {
   if(this.head !== undefined) {
-    console.log(this.head)
-
-    return 1;
+    var counter = 1;
+    var current = this.head;
+    var previous = undefined;
+      console.log(this.head)
+    while (current.link !== undefined) {
+      previous = current;
+      current = current.link
+      counter++;
+    }
+    return counter;
   } else {
-    console.log(this.head)
+      console.log('NOT')
     return 0;
   };
 
@@ -20,10 +27,16 @@ LinkedList.prototype.count = function() {
 
 LinkedList.prototype.push = function(data) {
   if(this.head) {
-    // console.log('NOT SETTING')
+    var node = new Node(data)
+    current = this.head;
+    previous = undefined;
+    while (current.link !== undefined) {
+      previous = current;
+      current = current.link;
+    }
+    current.link = node;
   } else {
     this.head = new Node(data);
-    // console.log('SETTING - ' + this.head.data)
     return this.head;
   };
 }
