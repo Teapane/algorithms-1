@@ -39,7 +39,7 @@ LinkedList.prototype.push = function(data) {
   };
 }
 
-LinkedList.prototype.pop = function(data) {
+LinkedList.prototype.pop = function() {
   if(this.head) {
     current = this.head;
     previous = undefined;
@@ -51,6 +51,28 @@ LinkedList.prototype.pop = function(data) {
     return current.data;
   } else {
     return this.head;
+  };
+}
+
+LinkedList.prototype.shift = function(data) {
+  if(this.head) {
+    var node = new Node(data)
+    current = this.head;
+    node.link = current;
+    this.head = node;
+  } else {
+    this.head = new Node(data);
+    return this.head;
+  };
+}
+
+LinkedList.prototype.unshift = function() {
+  if(this.head) {
+    current = this.head;
+    this.head = current.link;
+    return current.data
+  } else {
+    return undefined;
   };
 }
 

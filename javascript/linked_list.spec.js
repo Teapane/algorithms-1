@@ -39,4 +39,31 @@ describe('linkedList', function() {
     expect(linkedList.count()).toEqual(2);
   })
 
+  it('can shift the beginning of an empty list with a new node', function() {
+    var linkedList = new LinkedList();
+    linkedList.shift('howdy')
+    expect(linkedList.head.data).toEqual('howdy')
+    expect(linkedList.count()).toEqual(1);
+  })
+
+  it('can shift the beginning of a list with a new node', function() {
+    var linkedList = new LinkedList();
+    linkedList.push('howdy')
+    linkedList.push('hello')
+    expect(linkedList.count()).toEqual(2);
+    linkedList.shift('heyo')
+    expect(linkedList.count()).toEqual(3);
+  })
+
+  it('can unshift the beginning of a list', function() {
+    var linkedList = new LinkedList();
+    expect(linkedList.unshift()).toBeUndefined();
+    linkedList.push('howdy')
+    linkedList.push('hello')
+    linkedList.push('howdy')
+    expect(linkedList.unshift()).toEqual('howdy');
+    expect(linkedList.count()).toEqual(2);
+    expect(linkedList.head.data).toEqual('hello');
+  })
+
 });
