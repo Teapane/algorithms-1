@@ -37,14 +37,14 @@ describe('linkedList', function() {
     expect(linkedList.count()).toEqual(3);
     expect(linkedList.pop()).toEqual('heyo')
     expect(linkedList.count()).toEqual(2);
-  })
+  });
 
   it('can shift the beginning of an empty list with a new node', function() {
     var linkedList = new LinkedList();
     linkedList.shift('howdy')
     expect(linkedList.head.data).toEqual('howdy')
     expect(linkedList.count()).toEqual(1);
-  })
+  });
 
   it('can shift the beginning of a list with a new node', function() {
     var linkedList = new LinkedList();
@@ -53,7 +53,7 @@ describe('linkedList', function() {
     expect(linkedList.count()).toEqual(2);
     linkedList.shift('heyo')
     expect(linkedList.count()).toEqual(3);
-  })
+  });
 
   it('can unshift the beginning of a list', function() {
     var linkedList = new LinkedList();
@@ -64,6 +64,19 @@ describe('linkedList', function() {
     expect(linkedList.unshift()).toEqual('howdy');
     expect(linkedList.count()).toEqual(2);
     expect(linkedList.head.data).toEqual('hello');
-  })
+  });
+
+  it('can add an element after an index', function() {
+    var linkedList = new LinkedList();
+    expect(linkedList.insertAfter(2, 'hello')).toBeUndefined();
+    var node1 = linkedList.push('howdy')
+    var node2 = linkedList.push('hello')
+    var node3 = linkedList.push('howdy')
+    var node4 = linkedList.push('good day')
+    var node5 = linkedList.insertAfter(2, 'good evening');
+    expect(linkedList.count()).toEqual(5);
+    expect(node3.link).toEqual(node5)
+    expect(node5.link).toEqual(node4)
+  });
 
 });

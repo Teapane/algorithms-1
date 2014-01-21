@@ -33,6 +33,7 @@ LinkedList.prototype.push = function(data) {
       current = current.link;
     }
     current.link = node;
+    return node;
   } else {
     this.head = new Node(data);
     return this.head;
@@ -71,6 +72,25 @@ LinkedList.prototype.unshift = function() {
     current = this.head;
     this.head = current.link;
     return current.data
+  } else {
+    return undefined;
+  };
+}
+
+LinkedList.prototype.insertAfter = function(position, data) {
+  if(position < this.count()) {
+    var node = new Node(data)
+    var previous = undefined;
+    var nodeCount = 0;
+    var current = this.head;
+    while (nodeCount <= position) {
+      previous = current;
+      current = current.link;
+      nodeCount++;
+    }
+    previous.link = node;
+    node.link = current;
+    return node;
   } else {
     return undefined;
   };
