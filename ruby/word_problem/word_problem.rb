@@ -22,19 +22,14 @@ class WordProblem
   private
 
   def pemdas_calculator
-    new_phrase_elements = phrase_elements
-    if operators.all? {|o| o == 'divided' || o == 'multiplied'}
-      literal_calculator(numbers)
+    compact_phrase_elements if operand_indices.length != 0
+    set_numbers
+    set_operators
+    @numbers = @numbers.collect {|n| n.to_i}
+    if operators.any? {|o| o == 'divided' || o == 'multiplied'}
+      pemdas_calculator
     else
-      compact_phrase_elements if operand_indices.length != 0
-      set_numbers
-      set_operators
-      @numbers = @numbers.collect {|n| n.to_i}
-      if operators.any? {|o| o == 'divided' || o == 'multiplied'}
-        pemdas_calculator
-      else
-        literal_calculator(numbers)
-      end
+      literal_calculator(numbers)
     end
   end
 
@@ -48,10 +43,8 @@ class WordProblem
 
   def compact_phrase_elements
     index = operand_indices.first
-    # operand_indices.collect do |index|
-      subtotal = phrase_elements[index - 1].to_i.send(conversion[phrase_elements[index]], phrase_elements[index+1].to_i)
-      phrase_elements[(index - 1)...(index + 2)] = subtotal.to_s
-    # end
+    subtotal = phrase_elements[index - 1].to_i.send(conversion[phrase_elements[index]], phrase_elements[index+1].to_i)
+    phrase_elements[(index - 1)...(index + 2)] = subtotal.to_s
   end
 
   def operand_indices

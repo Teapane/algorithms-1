@@ -125,7 +125,7 @@ class WordProblemTest < Minitest::Unit::TestCase
 
   def test_can_handle_order_of_operations_for_mixed_operands
     assert_equal 22, WordProblem.new('What is 20 plus 5 divided by 5 multiplied by 2?', true).answer
-
+    assert_equal 30, WordProblem.new('What is 20 minus 10 divided by 5 plus 6 multiplied by 2?', true).answer
   end
 
 end
