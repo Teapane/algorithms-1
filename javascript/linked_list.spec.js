@@ -28,4 +28,15 @@ describe('linkedList', function() {
     expect(linkedList.count()).toEqual(3);
   });
 
+  it('can pop the last element from the list', function() {
+    var linkedList = new LinkedList();
+    expect(linkedList.pop()).toEqual(undefined)
+    linkedList.push('howdy')
+    linkedList.push('hello')
+    linkedList.push('heyo')
+    expect(linkedList.count()).toEqual(3);
+    expect(linkedList.pop()).toEqual('heyo')
+    expect(linkedList.count()).toEqual(2);
+  })
+
 });

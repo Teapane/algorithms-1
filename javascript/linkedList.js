@@ -11,7 +11,6 @@ LinkedList.prototype.count = function() {
     var counter = 1;
     var current = this.head;
     var previous = undefined;
-      console.log(this.head)
     while (current.link !== undefined) {
       previous = current;
       current = current.link
@@ -19,7 +18,6 @@ LinkedList.prototype.count = function() {
     }
     return counter;
   } else {
-      console.log('NOT')
     return 0;
   };
 
@@ -41,5 +39,19 @@ LinkedList.prototype.push = function(data) {
   };
 }
 
+LinkedList.prototype.pop = function(data) {
+  if(this.head) {
+    current = this.head;
+    previous = undefined;
+    while (current.link !== undefined) {
+      previous = current;
+      current = current.link;
+    }
+    previous.link = undefined;
+    return current.data;
+  } else {
+    return this.head;
+  };
+}
 
 module.exports = LinkedList;  
