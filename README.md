@@ -11,7 +11,7 @@ algorithms
 
  * __Ruby__
 
-   * __minitest__ - I followed an existing test (from a Jumpstart Lab exercise) suite to TDD the process of building a binary search tree of nodes containing data. In this case the data was a number, so that the nodes were placed to the left of a node if their data was less than or equal to the data of that node, and to the right if greater. I added the *all* method to return a sorted array of all nodes in the tree.  
+   * __minitest__ - I followed an existing test (from a Jumpstart Labs exercise) suite to TDD the process of building a binary search tree of nodes containing data. In this case the data was a number, so that the nodes were placed to the left of a node if their data was less than or equal to the data of that node, and to the right if greater. I added the *all* method to return a sorted array of all nodes in the tree.  
 
 ##Linked Lists
 
@@ -23,4 +23,8 @@ algorithms
 
  * __Javascript__ - I extended what I learned about linked lists in ruby by writing a test suite in Jasmine to TDD the linked list in Javascript.
 
+##Prime Factors
 
+ * __Ruby__
+
+   * From an in-class (Jumpstart Labs) exercise on finding the prime factors for a number. I followed a given minitest test suite to TDD the process.
