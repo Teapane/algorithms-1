@@ -1,4 +1,3 @@
-require 'pry'
 class BinarySearchTree
 
   attr_reader :root_node
